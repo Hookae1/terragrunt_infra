@@ -16,9 +16,14 @@ include "root" {
 } 
 
 #### ---- Dependency blocks ---- ####
-dependency "vpc" {
+dependency "ec2" {
   config_path  = "../ec2"
   skip_outputs = false
+
+  mock_outputs_allowed_terraform_commands = ["init", "validate"]
+  mock_outputs = {
+    public_ip  = "127.0.0.1"
+  }
 }
 
 #### ---- Indicate the input values to use for the variables of the module ---- ####
@@ -30,11 +35,12 @@ inputs = {
   maintainer          = "${local.dev_vars.locals.maintainer}"
 
   ### This module new declared variables
-  app_name            = "test"
-  ec2_default_ami     = "ami-01cace73230891f68"
+  domain              = "grunt-test.pp.ua"    
+  app_sub_domain      = "www"   
+  api_sub_domain      = "api"
 
   ### Dependency from another modules
-
+  public_ip           = dependency.ec2.outputs.public_ip
 }
 
 

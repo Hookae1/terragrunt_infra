@@ -16,9 +16,14 @@ include "root" {
 }
 
 #### ---- Dependency blocks ---- ####
-dependency "sg" {
+dependency "vpc" {
   config_path  = "../vpc"
   skip_outputs = false
+
+  mock_outputs_allowed_terraform_commands = ["init", "validate"]
+  mock_outputs = {
+    vpc_id = "vpc_grunt"
+  }
 }
 
 #### ---- Indicate the input values to use for the variables of the module ---- ####
