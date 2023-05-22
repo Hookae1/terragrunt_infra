@@ -6,7 +6,7 @@ locals {
 
 #### ---- Indicate where to source the terraform module from --- ####
 terraform {
-  source  = "git::git@github.com:Hookae1/terraform_modules.git//modules/vpc?ref=v1.0.6"
+  source  = "git::git@github.com:Hookae1/terraform_modules.git//modules/vpc?ref=v1.0.7"
 }
 
 #### ---- Include block ---- ####
